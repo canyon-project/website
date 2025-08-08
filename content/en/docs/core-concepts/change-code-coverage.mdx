@@ -1,54 +1,55 @@
-# **变更代码覆盖率**
+# **Changed Code Coverage**
 
-**变更代码覆盖率**让您可以聚焦这次变更代码的测试情况。
+**Changed Code Coverage** allows you to focus on the test coverage of the code changes in this commit.
 
-## 维度
+## Dimensions
 
 
-### **新增（文件）行覆盖率**
+### **Added (File) Line Coverage**
 
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号（会有包含注释、空白行的情况）
-2. 遍历变更文件 **coverageMap** 的 **branchMap**、**fnMap**、**statementMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **branchMap**、**fnMap**、**statementMap** 均已覆盖
+**Calculation Logic:**
+1. git diff between two commits to get the difference files => difference line numbers (may include comments, blank lines)
+2. Traverse the **branchMap**, **fnMap**, **statementMap** of the changed file's **coverageMap** to determine if they include the difference line numbers
+3. **Covered** definition: The **branchMap**, **fnMap**, **statementMap** containing the difference line numbers are all covered
 
-**计算公式：**
+**Calculation Formula:**
 
 
 ```
-新增（文件）行覆盖率 = 已覆盖（文件）行数 / 新增（文件）行总数
+Added (File) Line Coverage = Covered (File) Lines / Total Added (File) Lines
 ```
 
-### **新增分支覆盖率**
+### **Added Branch Coverage**
 
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号
-2. 遍历变更文件 **coverageMap** 的 **branchMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **branchMap** 已覆盖
+**Calculation Logic:**
+1. git diff between two commits to get the difference files => difference line numbers
+2. Traverse the **branchMap** of the changed file's **coverageMap** to determine if it includes the difference line numbers
+3. **Covered** definition: The **branchMap** containing the difference line numbers is covered
 
-**计算公式：**
+**Calculation Formula:**
 ```
-新增分支覆盖率 = 已覆盖分支数 / 新增分支总数
-```
-
-### **新增函数覆盖率**
-
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号
-2. 遍历变更文件 **coverageMap** 的 **fnMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **fnMap** 已覆盖
-
-**计算公式：**
-```
-新增函数覆盖率 = 已覆盖函数数 / 新增函数总数
+Added Branch Coverage = Covered Branches / Total Added Branches
 ```
 
-### **新增语句覆盖率**
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号
-2. 遍历变更文件 **coverageMap** 的 **statementMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **statementMap** 已覆盖
-**计算公式：**
+### **Added Function Coverage**
+
+**Calculation Logic:**
+1. git diff between two commits to get the difference files => difference line numbers
+2. Traverse the **fnMap** of the changed file's **coverageMap** to determine if it includes the difference line numbers
+3. **Covered** definition: The **fnMap** containing the difference line numbers is covered
+
+**Calculation Formula:**
 ```
-新增语句覆盖率 = 已覆盖语句数 / 新增语句总数
+Added Function Coverage = Covered Functions / Total Added Functions
+```
+
+### **Added Statement Coverage**
+**Calculation Logic:**
+1. git diff between two commits to get the difference files => difference line numbers
+2. Traverse the **statementMap** of the changed file's **coverageMap** to determine if it includes the difference line numbers
+3. **Covered** definition: The **statementMap** containing the difference line numbers is covered
+
+**Calculation Formula:**
+```
+Added Statement Coverage = Covered Statements / Total Added Statements
 ```
