@@ -1,45 +1,45 @@
-# 介绍
+# Introduction
 
-## 概述
+## Vue d'ensemble
 
-Canyon（意为 “峡谷”，发音 /ˈkænjən/）是一个 JavaScript 代码覆盖率收集平台。我们解决了开发人员和 QA 工程师在端到端测试过程中收集测试用例代码覆盖率时遇到的困难。它由三个主要部分组成：
+Canyon (signifiant "canyon", prononcé /ˈkænjən/) est une plateforme de collecte de couverture de code JavaScript. Nous résolvons les difficultés rencontrées par les développeurs et les ingénieurs QA lors de la collecte de la couverture de code des cas de test dans le cadre de tests end-to-end. Elle se compose de trois parties principales :
 
-- 负责适配各种CI提供商、侦测环境变量的一系列 [插件](https://github.com/canyon-project/canyon/tree/main/plugins)。
+- Une série de [plugins](https://github.com/canyon-project/canyon/tree/main/plugins) responsables de l'adaptation à divers fournisseurs CI et de la détection des variables d'environnement.
 
-- 负责收集处理覆盖率数据，提供后端API的 [nodejs服务](https://github.com/canyon-project/canyon/tree/main/packages/canyon-backend)。
+- Un [service nodejs](https://github.com/canyon-project/canyon/tree/main/packages/canyon-backend) chargé de collecter et traiter les données de couverture et de fournir une API backend.
 
-- 负责展示覆盖率数据的 [react前端应用](https://github.com/canyon-project/canyon/tree/main/packages/canyon-platform)。
+- Une [application frontend React](https://github.com/canyon-project/canyon/tree/main/packages/canyon-platform) responsable de l'affichage des données de couverture.
 
 ![](https://cdn.jsdelivr.net/gh/canyon-project/assets/docs/static/docs/getting-started/introduction/home-screen.png)
 
-## 为什么是Canyon?
+## Pourquoi Canyon ?
 
-Canyon通过在编译阶段分离 hit 和 map 数据，能够高效处理 UI 自动化测试产生的大量覆盖率数据。
+Canyon peut traiter efficacement de grandes quantités de données de couverture générées par les tests d'automatisation UI en séparant les données hit et map lors de la phase de compilation.
 
-此外，Canyon 适配了常见CI提供商，能够在构建阶段插入探针代码，在 UI 自动化测试阶段收集和上报覆盖率数据。
+De plus, Canyon s'adapte aux fournisseurs CI courants, permettant d'insérer du code de sonde lors de la phase de construction et de collecter et signaler les données de couverture lors de la phase de test d'automatisation UI.
 
-这使得开发团队能够 __准确__ 、 __实时__ 的了解当前 UI 自动化测试 __每个用例__ 的覆盖率情况，从而更好地评估和提升代码质量。
+Cela permet aux équipes de développement de connaître __précisément__ et __en temps réel__ la couverture de __chaque cas de test__ d'automatisation UI actuel, afin de mieux évaluer et améliorer la qualité du code.
 
-### 功能特点
+### Fonctionnalités
 
-- [准确高效](/docs/core-concepts/separate-hit-and-map)：通过分离hit、map，编译时生成初始覆盖率数据，准确高效的收集覆盖率数据
-- [SourceMap](/docs/core-concepts/restore-source-code-coverage)：准确的源码覆盖率还原
-- [构建工具](/docs/installation/getting-started)：提供next.js、vite、webpack等常见构建工具的覆盖率方案
-- [自动化框架](/docs/end-to-end-testing/getting-started)：提供常见UI自动化框架集成方案
-- [CI提供商](/docs/reference/provider)：适配常见CI提供商（Github Actions、GitLab Runner），侦测CI环境变量
+- [Précis et Efficace](/docs/core-concepts/separate-hit-and-map)：Grâce à la séparation des hit et map, les données de couverture initiales sont générées au moment de la compilation, permettant une collecte de données de couverture précise et efficace
+- [SourceMap](/docs/core-concepts/restore-source-code-coverage)：Restauration précise de la couverture du code source
+- [Outils de Build](/docs/installation/getting-started)：Fournit des solutions de couverture pour les outils de build courants comme next.js, vite, webpack
+- [Frameworks d'Automatisation](/docs/end-to-end-testing/getting-started)：Solutions d'intégration pour les frameworks d'automatisation UI courants
+- [Fournisseurs CI](/docs/reference/provider)：S'adapte aux fournisseurs CI courants (Github Actions, GitLab Runner), détecte les variables d'environnement CI
 
 
-### 自托管
+### Auto-hébergement
 
-如果您希望完全掌控您的覆盖率数据和测试数据，您可以在自己的基础设施上[自托管](/docs/self-host/community-edition/prerequisites) Canyon。
+Si vous souhaitez avoir un contrôle total sur vos données de couverture et vos données de test, vous pouvez [auto-héberger](/docs/self-host/community-edition/prerequisites) Canyon sur vos propres infrastructures.
 
-## 生态系统
+## Écosystème
 
-| 项目                  | 状态                                                         | 描述                                         |
-| --------------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| [babel-plugin-canyon] | [![babel-plugin-canyon-status]][babel-plugin-canyon-package] | Babel 插件，用于检测流水线环境变量           |
-| [canyon-uploader]     | [![canyon-uploader-status]][canyon-uploader-package]         | 扫描本地 `.canyon_output` 数据并上传到服务器 |
-| [canyon-extension]    | [![canyon-extension-status]][canyon-extension-package]       | Chrome 插件，用于手动上报覆盖率数据          |
+| Projet                | Statut                                                       | Description                                 |
+| --------------------- | ------------------------------------------------------------ | ------------------------------------------- |
+| [babel-plugin-canyon] | [![babel-plugin-canyon-status]][babel-plugin-canyon-package] | Plugin Babel pour détecter les variables d'environnement du pipeline |
+| [canyon-uploader]     | [![canyon-uploader-status]][canyon-uploader-package]         | Scan les données locales `.canyon_output` et les upload sur le serveur |
+| [canyon-extension]    | [![canyon-extension-status]][canyon-extension-package]       | Extension Chrome pour rapporter manuellement les données de couverture |
 
 [babel-plugin-canyon]: /docs/ecosystem/babel-plugin-canyon
 [vite-plugin-canyon]: https://github.com/canyon-project/vite-plugin-canyon
@@ -54,13 +54,13 @@ Canyon通过在编译阶段分离 hit 和 map 数据，能够高效处理 UI 自
 [canyon-uploader-package]: https://npmjs.com/package/canyon-uploader
 [canyon-extension-package]: https://chrome.google.com/webstore/detail/canyon/omnpafdjidgpdmlimbangcjjaaodbeof
 
-## 架构
+## Architecture
 
-以下图示展示了 Canyon 及其生态系统的一些组件架构：
+Le diagramme suivant montre l'architecture de Canyon et de certains de ses composants d'écosystème :
 
-1. Babel 插件在 CI/CD 流水线中完成代码插桩。
-2. 项目发布到测试环境，用户可以选择 UI 自动化或手动测试来触发插桩代码探针。
-3. 生成的覆盖率数据上报至 Canyon 服务器。
-4. Canyon 服务器消费数据，并结合 GitLab 提供的源代码信息生成覆盖率报告。
+1. Le plugin Babel effectue l'instrumentation du code dans le pipeline CI/CD.
+2. Le projet est déployé dans un environnement de test, et l'utilisateur peut choisir des tests d'automatisation UI ou des tests manuels pour déclencher les sondes de code instrumenté.
+3. Les données de couverture générées sont signalées au serveur Canyon.
+4. Le serveur Canyon consomme les données et génère des rapports de couverture en combinaison avec les informations de code source fournies par GitLab.
 
 ![](https://cdn.jsdelivr.net/gh/canyon-project/assets/docs/static/docs/getting-started/introduction/architecture.png)

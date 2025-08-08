@@ -1,54 +1,54 @@
-# **变更代码覆盖率**
+# **Couverture du code modifié**
 
-**变更代码覆盖率**让您可以聚焦这次变更代码的测试情况。
+La **couverture du code modifié** vous permet de vous concentrer sur les tests du code modifié lors de cette modification.
 
-## 维度
+## Dimensions
 
 
-### **新增（文件）行覆盖率**
+### **Couverture des lignes (fichier) ajoutées**
 
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号（会有包含注释、空白行的情况）
-2. 遍历变更文件 **coverageMap** 的 **branchMap**、**fnMap**、**statementMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **branchMap**、**fnMap**、**statementMap** 均已覆盖
+**Logique de calcul :**
+1. git diff entre deux commits pour obtenir les fichiers modifiés => numéros de lignes modifiées (y compris les commentaires et les lignes vides)
+2. Parcourir **branchMap**, **fnMap** et **statementMap** de **coverageMap** des fichiers modifiés pour vérifier si ils incluent les numéros de lignes modifiées
+3. **Définition de "couvert"** : Les **branchMap**, **fnMap** et **statementMap** où se trouvent les numéros de lignes modifiées sont tous couverts
 
-**计算公式：**
+**Formule de calcul :**
 
 
 ```
-新增（文件）行覆盖率 = 已覆盖（文件）行数 / 新增（文件）行总数
+Couverture des lignes (fichier) ajoutées = Nombre de lignes (fichier) couvertes / Nombre total de lignes (fichier) ajoutées
 ```
 
-### **新增分支覆盖率**
+### **Couverture des branches ajoutées**
 
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号
-2. 遍历变更文件 **coverageMap** 的 **branchMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **branchMap** 已覆盖
+**Logique de calcul :**
+1. git diff entre deux commits pour obtenir les fichiers modifiés => numéros de lignes modifiées
+2. Parcourir **branchMap** de **coverageMap** des fichiers modifiés pour vérifier si elles incluent les numéros de lignes modifiées
+3. **Définition de "couvert"** : Les **branchMap** où se trouvent les numéros de lignes modifiées sont couvertes
 
-**计算公式：**
+**Formule de calcul :**
 ```
-新增分支覆盖率 = 已覆盖分支数 / 新增分支总数
-```
-
-### **新增函数覆盖率**
-
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号
-2. 遍历变更文件 **coverageMap** 的 **fnMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **fnMap** 已覆盖
-
-**计算公式：**
-```
-新增函数覆盖率 = 已覆盖函数数 / 新增函数总数
+Couverture des branches ajoutées = Nombre de branches couvertes / Nombre total de branches ajoutées
 ```
 
-### **新增语句覆盖率**
-**计算逻辑：**
-1. git diff 两个提交之间的差异文件 => 差异行号
-2. 遍历变更文件 **coverageMap** 的 **statementMap** 的定位是否包含了差异行号
-3. **已覆盖**的定义：差异行号所处的 **statementMap** 已覆盖
-**计算公式：**
+### **Couverture des fonctions ajoutées**
+
+**Logique de calcul :**
+1. git diff entre deux commits pour obtenir les fichiers modifiés => numéros de lignes modifiées
+2. Parcourir **fnMap** de **coverageMap** des fichiers modifiés pour vérifier si elles incluent les numéros de lignes modifiées
+3. **Définition de "couvert"** : Les **fnMap** où se trouvent les numéros de lignes modifiées sont couvertes
+
+**Formule de calcul :**
 ```
-新增语句覆盖率 = 已覆盖语句数 / 新增语句总数
+Couverture des fonctions ajoutées = Nombre de fonctions couvertes / Nombre total de fonctions ajoutées
+```
+
+### **Couverture des instructions ajoutées**
+**Logique de calcul :**
+1. git diff entre deux commits pour obtenir les fichiers modifiés => numéros de lignes modifiées
+2. Parcourir **statementMap** de **coverageMap** des fichiers modifiés pour vérifier si elles incluent les numéros de lignes modifiées
+3. **Définition de "couvert"** : Les **statementMap** où se trouvent les numéros de lignes modifiées sont couvertes
+**Formule de calcul :**
+```
+Couverture des instructions ajoutées = Nombre d'instructions couvertes / Nombre total d'instructions ajoutées
 ```
