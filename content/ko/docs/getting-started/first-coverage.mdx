@@ -1,68 +1,68 @@
 import { Steps, Callout, Cards } from "nextra/components";
 
-# 第一个覆盖率数据
+# 첫 번째 커버리지 데이터
 
 > [!NOTE]
 >
-> Canyon 提供[常见框架的安装指南](/docs/installation/getting-started)，帮助您快速上手。
+> Canyon은 [일반적인 프레임워크의 설치 가이드](/docs/installation/getting-started)를 제공하여 빠르게 시작할 수 있도록 도와줍니다.
 
-跟着以下步骤完成第一个覆盖率数据上报：
+다음 단계에 따라 첫 번째 커버리지 데이터 보고를 완료하세요:
 
-## 作为新项目开始
+## 새 프로젝트로 시작하기
 
 <Steps>
-  ### 安装
+  ### 설치
 
-在前端工程化和模块化开发中离不开Babel，对于Babel项目只需安装两个Babel插件，即可快速开始。
+프론트엔드 엔지니어링 및 모듈식 개발에서 Babel은 필수적입니다. Babel 프로젝트의 경우 두 개의 Babel 플러그인만 설치하면 빠르게 시작할 수 있습니다.
 
 ```sh npm2yarn
 npm install babel-plugin-istanbul babel-plugin-canyon -D
 ```
 
-在 [Babel 配置文件](https://babeljs.io/docs/config-files#configuration-file-types) 中添加 [`istanbul`](https://www.npmjs.com/package/babel-plugin-istanbul) 和 [`canyon`](https://www.npmjs.com/package/babel-plugin-canyon) 插件：
+[Babel 설정 파일](https://babeljs.io/docs/config-files#configuration-file-types)에 [`istanbul`](https://www.npmjs.com/package/babel-plugin-istanbul)과 [`canyon`](https://www.npmjs.com/package/babel-plugin-canyon) 플러그인을 추가하세요:
 
   ```js filename="babel.config.js" {3,4} copy
   module.exports = {
     plugins: [
       'istanbul',
       'canyon'
-      // 需注意插件顺序，canyon插件应在istanbul插件之后
+      // 플러그인 순서에 주의하세요. canyon 플러그인은 istanbul 플러그인 뒤에 와야 합니다
       ],
   };
   ```
 
-### 检查
+### 확인
 
-配置完成后，启动项目并在控制台打印 **window.\_\_coverage\_\_**。如果输出与下图一致，则表示代码插桩成功。
+설정이 완료되면 프로젝트를 시작하고 콘솔에서 **window.\_\_coverage\_\_**를 출력해보세요. 출력이 아래 이미지와 같다면 코드 계측이 성공적으로 이루어진 것입니다.
 
 ![coverage-canyon-console](https://cdn.jsdelivr.net/gh/canyon-project/assets/docs/static/docs/getting-started/first-coverage/coverage-canyon-console.png)
 
-### 配置 CI 环境变量
+### CI 환경 변수 구성
 
-在 CI 环境中，我们需要配置一些环境变量以便上报覆盖率数据。
+CI 환경에서는 커버리지 데이터를 보고하기 위해 몇 가지 환경 변수를 구성해야 합니다.
 
 > [!TIP]
 >
-> canyon会在编译时侦测流水线变量，我们适配了多个[流水线供应商](/docs/reference/provider)。<br/>
-> 没有您的流水线供应商？尝试[显式配置](/docs/ecosystem/babel-plugin-canyon#配置)。
+> canyon은 컴파일 시 파이프라인 변수를 감지하며, 여러 [파이프라인 제공업체](/docs/reference/provider)를 지원합니다.<br/>
+> 사용 중인 파이프라인 제공업체가 없나요? [명시적 구성](/docs/ecosystem/babel-plugin-canyon#配置)을 시도해보세요.
 
 
-1. `DSN` 和 `REPORTER`
+1. `DSN`과 `REPORTER`
 
-- **DSN**：覆盖率数据上报的服务地址，\{\{url\}\}/coverage/client，其中 \{\{url\}\} 为 Canyon 服务地址。
-- **REPORTER**：用户 token，可在Canyon用户设置页面查看。
+- **DSN**: 커버리지 데이터 보고 서비스 주소, \{\{url\}\}/coverage/client, 여기서 \{\{url\}\}은 Canyon 서비스 주소입니다.
+- **REPORTER**: 사용자 토큰, Canyon 사용자 설정 페이지에서 확인할 수 있습니다.
 
-2. 配置 CI 平台变量
+2. CI 플랫폼 변수 구성
 
 ![gitlab](https://cdn.jsdelivr.net/gh/canyon-project/assets/docs/static/docs/getting-started/first-coverage/gitlab-var-config.png)
 
 <Callout type="info" emoji="ℹ️">
-  其中，项目 ID、分支和 SHA 无需手动配置，Canyon 插件会自动侦测流水线环境变量。
+  프로젝트 ID, 브랜치 및 SHA는 수동으로 구성할 필요가 없습니다. Canyon 플러그인이 자동으로 파이프라인 환경 변수를 감지합니다.
 </Callout>
 
-  ### 更新babel插件生效条件
+  ### babel 플러그인 활성화 조건 업데이트
 
-  __在 CI 阶段，我们需要控制插件生效的条件，以防止在生产分支插桩。__
+  __CI 단계에서는 프로덕션 브랜치에서 코드 계측을 방지하기 위해 플러그인 활성화 조건을 제어해야 합니다.__
 
   ```js {2,3} copy
   module.exports = {
@@ -75,24 +75,24 @@ npm install babel-plugin-istanbul babel-plugin-canyon -D
   };
   ```
 
-  ### 上报覆盖率数据
+  ### 커버리지 데이터 보고
 
-  等待 CI 完成后，页面发布到测试环境。
+  CI가 완료된 후 페이지가 테스트 환경에 배포됩니다.
 
-  此时，覆盖率数据已存储在浏览器中。随着用户操作或UI自动化测试的执行，window.__coverage___数据会不断累积。
+  이때 커버리지 데이터는 브라우저에 저장됩니다. 사용자 조작이나 UI 자동화 테스트가 실행됨에 따라 window.__coverage___ 데이터가 계속 누적됩니다.
 
-  将这些数据准确无误的上报至 Canyon 服务端，即可实现覆盖率数据的实时展示。
+  이 데이터를 정확하게 Canyon 서버에 보고하면 커버리지 데이터를 실시간으로 표시할 수 있습니다.
 
 
-  以下是上报覆盖率数据的几种方式：
+  다음은 커버리지 데이터를 보고하는 몇 가지 방법입니다:
 
   <Cards>
   <Cards.Card
-    title="UI 自动化测试"
+    title="UI 자동화 테스트"
     href="/docs/end-to-end-testing/playwright"
   />
   <Cards.Card
-    title="手动测试"
+    title="수동 테스트"
     href="/docs/ecosystem/canyon-extension"
   />
 </Cards>

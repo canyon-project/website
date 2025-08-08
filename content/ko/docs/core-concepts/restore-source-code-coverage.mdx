@@ -1,17 +1,17 @@
-# 还原源码覆盖率
+# 소스 코드 커버리지 복원
 
-前端应用编译形态各异，很多情况下是经过预编译后的 AST 交由 babel 进行转换，这样导致覆盖率无法直接映射到源码上，因此我们需要还原源码覆盖率。
+프론트엔드 애플리케이션의 컴파일 형태는 다양하며, 많은 경우 사전 컴파일된 AST가 babel에 의해 변환됩니다. 이로 인해 커버리지를 소스 코드에 직접 매핑할 수 없어 소스 코드 커버리지를 복원해야 합니다.
 
 ## Source Map
 
 >
-> 在前端开发中，通常会对 JavaScript 代码进行压缩、混淆或使用预处理器（如 TypeScript、Babel）进行转换，以提高性能和兼容性。这些处理会使得最终部署到生产环境的代码与原始源代码差异很大，导致调试变得困难。Source Map 解决了这个问题，它记录了编译后代码与原始代码之间的映射关系，使得开发者能够在浏览器的开发者工具中查看和调试原始代码。 -- [web.dev](https://web.dev/articles/source-maps)
+> 프론트엔드 개발에서는 일반적으로 JavaScript 코드를 압축, 난독화하거나 전처리기(TypeScript, Babel 등)를 사용하여 변환함으로써 성능과 호환성을 향상시킵니다. 이러한 처리는 최종적으로 프로덕션 환경에 배포되는 코드와 원본 소스 코드 간에 큰 차이를 만들어 디버깅을 어렵게 합니다. Source Map은 이 문제를 해결하여 컴파일된 코드와 원본 코드 간의 매핑 관계를 기록하고, 개발자가 브라우저의 개발자 도구에서 원본 코드를 보고 디버깅할 수 있게 합니다. -- [web.dev](https://web.dev/articles/source-maps)
 
-大多数情况下，您不需要手动获取 sourceMap 文件，因为大多数构建工具都会 `预编译后的 AST 交由 babel 进行转换` 的这个过程中传递了 sourceMap 文件。
+대부분의 경우, sourceMap 파일을 수동으로 가져올 필요가 없습니다. 대부분의 빌드 도구는 `사전 컴파일된 AST를 babel에 전달하여 변환`하는 과정에서 sourceMap 파일을 전달합니다.
 
-但是在某些情况下，您可能需要配置 sourceMap 文件。
+그러나 일부 상황에서는 sourceMap 파일을 구성해야 할 수도 있습니다.
 
-## 开启 sourceMap 选项的情况
+## sourceMap 옵션을 활성화해야 하는 경우
 
 ```js filename="webpack.config.js" {4}
 const path = require('path');
@@ -34,7 +34,7 @@ module.exports = {
 };
 ```
 
-在这个例子中，webpack的入口文件是 `./build/main.js`，这是tsc编译ts文件的产物。我们需要将 tsconfig.json 中的 `sourceMap` 设置为 `true`，__才能保证sourceMap数据的传递。__
+이 예제에서 webpack의 진입점 파일은 `./build/main.js`로, 이는 tsc가 ts 파일을 컴파일한 결과물입니다. sourceMap 데이터의 전달을 보장하기 위해 tsconfig.json에서 `sourceMap`을 `true`로 설정해야 합니다.
 
 ```json filename="tsconfig.json" {3}
 {
@@ -44,19 +44,19 @@ module.exports = {
 }
 ```
 
-## 手动设置 sourceMap 的情况
+## sourceMap을 수동으로 설정해야 하는 경우
 
-当您的sourceMap生成的方式为以下情况时，您需要手动设置sourceMap。
+sourceMap이 다음과 같은 방식으로 생성되는 경우, 수동으로 sourceMap을 설정해야 합니다.
 
-| 分类              | devtool                       |  描述                                    |
+| 분류              | devtool                       |  설명                                    |
 |-------------------|-------------------------------|-----------------------------------------|
-| 生成source map文件，不显示源码   | hidden-source-map             |  文件未尾不引用map文件                 |
-| 生成source map文件，不显示源码   | nosources-source-map           | 文件未尾不引用map文件                 |
+| source map 파일 생성, 소스 코드 표시 안 함   | hidden-source-map             |  파일 끝에 map 파일 참조 없음                 |
+| source map 파일 생성, 소스 코드 표시 안 함   | nosources-source-map           | 파일 끝에 map 파일 참조 없음                 |
 
-### 如何手动设置 sourceMap
+### sourceMap을 수동으로 설정하는 방법
 
-此时您需要使用到[分离hit和map](/docs/core-concepts/separate-hit-and-map)，通过`canyon-uploader`在构建阶段侦测本地的sourceMap文件，Canyon会将他们与覆盖率初始数据匹配上传。
+이 경우 [hit와 map 분리](/docs/core-concepts/separate-hit-and-map)를 사용해야 합니다. `canyon-uploader`를 통해 빌드 단계에서 로컬 sourceMap 파일을 감지하면, Canyon이 이를 초기 커버리지 데이터와 매칭하여 업로드합니다.
 
 > [!NOTE]
 >
-> 这也需就是javascript过于灵活的一个缺点，想要收集到准确的源码覆盖率数据，我们需要串联起这些sourceMap文件，让代码插桩能够正确的映射到源码上。
+> 이는 JavaScript가 너무 유연하다는 단점이기도 합니다. 정확한 소스 코드 커버리지 데이터를 수집하려면 이러한 sourceMap 파일들을 연결하여 코드 계측이 소스 코드에 올바르게 매핑되도록 해야 합니다.

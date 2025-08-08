@@ -1,10 +1,10 @@
 # Playwright
 
-在 Playwright 中，获取上下文，在用例执行时将覆盖率数据写入到本地文件，最后使用 canyon-uploader 工具聚合上报。
+Playwright에서는 컨텍스트를 가져와 테스트 케이스 실행 중에 커버리지 데이터를 로컬 파일에 저장하고, 마지막으로 canyon-uploader 도구를 사용하여 데이터를 집계하여 보고합니다.
 
-## 覆盖率数据写入本地文件
+## 커버리지 데이터를 로컬 파일에 저장하기
 
-以下是 nodejs 代码示例：
+다음은 nodejs 코드 예시입니다:
 
 ```ts copy
 import * as fs from 'fs';
@@ -39,9 +39,9 @@ export const expect = test.expect;
 
 ```
 
-## 聚合上报
+## 집계 보고
 
-使用 canyon-uploader 工具聚合上报，具体使用方式请查看 [canyon-uploader](/docs/ecosystem/canyon-uploader) 文档。
+canyon-uploader 도구를 사용하여 데이터를 집계하고 보고합니다. 자세한 사용 방법은 [canyon-uploader](/docs/ecosystem/canyon-uploader) 문서를 참조하세요.
 
 ```bash copy
 ./canyon-uploader map --dsn=https://canyonjs.org
