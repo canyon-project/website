@@ -1,46 +1,46 @@
-# 先决条件
+# 전제 조건
 
-在您自己的基础架构上安装 Canyon 的先决条件。
+자신의 인프라에 Canyon을 설치하기 위한 전제 조건입니다.
 
-Canyon 是一个自托管 API 开发平台，打包为一组 Docker 容器。您可以在任何可以运行[Docker Engine](https://docs.docker.com/engine) 的操作系统上安装和运行 Canyon 。您可以在本地计算机或您选择的云提供商上使用 Canyon。
+Canyon은 Docker 컨테이너 집합으로 패키징된 자체 호스팅 API 개발 플랫폼입니다. [Docker Engine](https://docs.docker.com/engine)을 실행할 수 있는任何운영 체제에서 Canyon을 설치하고 실행할 수 있습니다. 로컬 컴퓨터 또는 선택한 클라우드 공급자에서 Canyon을 사용할 수 있습니다.
 
-## 系统要求
+## 시스템 요구 사항
 
-Canyon 的设计使其在小型和大型部署中都能良好运行。运行 Canyon 的最低要求是支持 Docker 的操作系统和 4 个 CPU 核心 + 4GB RAM 来生成构建映像，以及至少 1 个 CPU 核心 + 2GB RAM 来托管生成的输出文件。
+Canyon은 소규모 및 대규모 배포에서 모두 잘 작동하도록 설계되었습니다. Canyon을 실행하기 위한 최소 요구 사항은 Docker를 지원하는 운영 체제와 빌드 이미지를 생성하기 위한 4개의 CPU 코어 + 4GB RAM, 그리고 생성된 출력 파일을 호스팅하기 위한 적어도 1개의 CPU 코어 + 2GB RAM입니다.
 
-### 安装 Node.js、npm、pnpm
+### Node.js、npm、pnpm 설치
 
 #### Node.js + npm
 
-安装 [`Node.js`](https://nodejs.org/en) (v18+) 和 [`npm`](https://www.npmjs.com) (v9+).
+[`Node.js`](https://nodejs.org/en) (v18+) 및 [`npm`](https://www.npmjs.com) (v9+)을 설치하세요.
 
-- [Node.js + npm 安装手册](https://nodejs.org/en/download)
+- [Node.js + npm 설치 안내서](https://nodejs.org/en/download)
 
 
 ### pnpm
 
-安装 [`pnpm`](https://pnpm.io) (建议使用v9).
+[`pnpm`](https://pnpm.io) (v9 권장)을 설치하세요.
 
-- [pnpm 安装手册](https://pnpm.io/installation)
+- [pnpm 설치 안내서](https://pnpm.io/installation)
 
 ### Docker
 
-安装 [`Docker`](https://www.docker.com) (v20+).
+[`Docker`](https://www.docker.com) (v20+)을 설치하세요.
 
-- [Docker 安装手册](https://docs.docker.com/engine/install)
+- [Docker 설치 안내서](https://docs.docker.com/engine/install)
 
-### Postgres数据库
+### Postgres 데이터베이스
 
-Canyon 使用 Postgres 数据库来存储基础数据（需要14.x以上）。您可以使用您选择的任何 Postgres 数据库提供商 - 托管在本地或云提供商上。确保您拥有以下格式的有效 Postgres 数据库 URL：
+Canyon은 기본 데이터를 저장하기 위해 Postgres 데이터베이스를 사용합니다(14.x 이상 필요). 로컬 또는 클라우드 공급자에 호스팅되는 원하는任何Postgres 데이터베이스 공급자를 사용할 수 있습니다. 다음 형식의 유효한 Postgres 데이터베이스 URL을 보유하고 있는지 확인하세요:
 
 ```
 postgres://username:password@localhost:5432/dbname
 ```
 
-#### 创建表
+#### 테이블 생성
 
 ```shell
 pnpm run migrate
 ```
 
-或者直接使用建表 [SQL](https://github.com/canyon-project/canyon/blob/main/packages/canyon-backend/prisma/create_table.sql)。
+또는 직접 테이블 생성 [SQL](https://github.com/canyon-project/canyon/blob/main/packages/canyon-backend/prisma/create_table.sql)을 사용할 수 있습니다.

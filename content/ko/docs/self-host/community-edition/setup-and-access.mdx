@@ -1,17 +1,17 @@
-# 设置和访问
+# 설정 및 액세스
 
-了解如何设置和访问 Canyon 社区版。
+Canyon 커뮤니티 에디션을 설정하고 액세스하는 방법을 알아보세요.
 
-## 系统设置
+## 시스템 설정
 
-想要使用 Canyon 的所有功能，您必须配置以下数据表：
+Canyon의 모든 기능을 사용하려면 다음 데이터 테이블을 구성해야 합니다:
 
-1. `CANYON_SERVER`: Canyon 服务器地址
-2. `GITLAB_SERVER`: GitLab 服务器地址
-3. `GITLAB_CLIENT_ID`: GitLab 客户端 ID
-4. `GITLAB_CLIENT_SECRET`: GitLab 客户端密钥
+1. `CANYON_SERVER`: Canyon 서버 주소
+2. `GITLAB_SERVER`: GitLab 서버 주소
+3. `GITLAB_CLIENT_ID`: GitLab 클라이언트 ID
+4. `GITLAB_CLIENT_SECRET`: GitLab 클라이언트 비밀 키
 
-NOTE: 回调地址为 `<CANYON_SERVER>/oauth`，请确保在 GitLab 中配置正确。
+참고: 콜백 URL은 `<CANYON_SERVER>/oauth`입니다. GitLab에서 올바르게 구성되었는지 확인하세요.
 
 import { Callout } from 'nextra/components';
 
@@ -24,10 +24,10 @@ values  ('1', 'CANYON_SERVER', 'https://canyonjs.org'),
 ```
 
 <Callout type="info" emoji="ℹ️">
-  [将 GitLab 配置为 OAuth 2.0 身份验证身份提供者](https://docs.gitlab.com/ee/integration/oauth_provider.html)
+  [GitLab을 OAuth 2.0 인증 공급자로 구성](https://docs.gitlab.com/ee/integration/oauth_provider.html)
 </Callout>
 
-目前只支持 GitLab，后续会支持更多的 Git 服务商。
+현재 GitLab만 지원되며, 나중에 더 많은 Git 공급자가 지원될 예정입니다.
 
 ```sql copy
 insert into public.git_provider (id, url, type, name, disabled, private_token)
@@ -35,18 +35,18 @@ values  ('gitlab', 'https://gitlab.com', 'gitlab', 'GitLab', false, 'xxx');
 ```
 
 <Callout type="info" emoji="ℹ️">
-  [生成 GitLab Private Token](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token)
+  [GitLab 개인 토큰 생성](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token)
 </Callout>
 
-## 管理员登录
+## 관리자 로그인
 
-创建以下用户。您可以使用以下凭据登录： email: canyon，password: 123456
+다음 사용자를 생성하세요. 다음 자격 증명으로 로그인할 수 있습니다: email: canyon, password: 123456
 
 ```sql copy
 INSERT INTO "user" (id, email, password, nickname, avatar, favor)
 VALUES ('canyon', 'canyon@canyon.com', '123456', 'Canyon', '/avatar.jpg', '');
 ```
 
-## gitlab oauth2 登陆
+## gitlab oauth2 로그인
 
 ![](https://cdn.jsdelivr.net/gh/canyon-project/assets/docs/static/docs/self-host/community-edition/login.png)
