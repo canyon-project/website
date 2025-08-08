@@ -1,46 +1,46 @@
-# 先决条件
+# Prérequis
 
-在您自己的基础架构上安装 Canyon 的先决条件。
+Les conditions préalables à l'installation de Canyon sur votre propre infrastructure.
 
-Canyon 是一个自托管 API 开发平台，打包为一组 Docker 容器。您可以在任何可以运行[Docker Engine](https://docs.docker.com/engine) 的操作系统上安装和运行 Canyon 。您可以在本地计算机或您选择的云提供商上使用 Canyon。
+Canyon est une plateforme de développement API auto-hébergée, empaquetée sous forme de conteneurs Docker. Vous pouvez installer et exécuter Canyon sur n'importe quel système d'exploitation prenant en charge [Docker Engine](https://docs.docker.com/engine). Vous pouvez utiliser Canyon sur votre ordinateur local ou sur le fournisseur de cloud de votre choix.
 
-## 系统要求
+## Exigences système
 
-Canyon 的设计使其在小型和大型部署中都能良好运行。运行 Canyon 的最低要求是支持 Docker 的操作系统和 4 个 CPU 核心 + 4GB RAM 来生成构建映像，以及至少 1 个 CPU 核心 + 2GB RAM 来托管生成的输出文件。
+Canyon est conçu pour fonctionner efficacement dans des déploiements petits et grands. Les exigences minimales pour exécuter Canyon sont un système d'exploitation prenant en charge Docker, 4 cœurs CPU + 4 Go de RAM pour générer les images de construction, et au moins 1 cœur CPU + 2 Go de RAM pour héberger les fichiers de sortie générés.
 
-### 安装 Node.js、npm、pnpm
+### Installation de Node.js, npm, pnpm
 
 #### Node.js + npm
 
-安装 [`Node.js`](https://nodejs.org/en) (v18+) 和 [`npm`](https://www.npmjs.com) (v9+).
+Installez [`Node.js`](https://nodejs.org/en) (v18+) et [`npm`](https://www.npmjs.com) (v9+).
 
-- [Node.js + npm 安装手册](https://nodejs.org/en/download)
+- [Guide d'installation Node.js + npm](https://nodejs.org/en/download)
 
 
 ### pnpm
 
-安装 [`pnpm`](https://pnpm.io) (建议使用v9).
+Installez [`pnpm`](https://pnpm.io) (v9 recommandé).
 
-- [pnpm 安装手册](https://pnpm.io/installation)
+- [Guide d'installation pnpm](https://pnpm.io/installation)
 
 ### Docker
 
-安装 [`Docker`](https://www.docker.com) (v20+).
+Installez [`Docker`](https://www.docker.com) (v20+).
 
-- [Docker 安装手册](https://docs.docker.com/engine/install)
+- [Guide d'installation Docker](https://docs.docker.com/engine/install)
 
-### Postgres数据库
+### Base de données Postgres
 
-Canyon 使用 Postgres 数据库来存储基础数据（需要14.x以上）。您可以使用您选择的任何 Postgres 数据库提供商 - 托管在本地或云提供商上。确保您拥有以下格式的有效 Postgres 数据库 URL：
+Canyon utilise une base de données Postgres pour stocker les données de base (version 14.x ou supérieure requise). Vous pouvez utiliser n'importe quel fournisseur de base de données Postgres de votre choix - hébergé localement ou sur un fournisseur de cloud. Assurez-vous de disposer d'une URL de base de données Postgres valide au format suivant :
 
 ```
 postgres://username:password@localhost:5432/dbname
 ```
 
-#### 创建表
+#### Création des tables
 
 ```shell
 pnpm run migrate
 ```
 
-或者直接使用建表 [SQL](https://github.com/canyon-project/canyon/blob/main/packages/canyon-backend/prisma/create_table.sql)。
+Ou utilisez directement le script [SQL](https://github.com/canyon-project/canyon/blob/main/packages/canyon-backend/prisma/create_table.sql) de création de tables.

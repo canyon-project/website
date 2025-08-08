@@ -1,17 +1,17 @@
-# 设置和访问
+# Configuration et Accès
 
-了解如何设置和访问 Canyon 社区版。
+Découvrez comment configurer et accéder à l'édition communautaire de Canyon.
 
-## 系统设置
+## Configuration du Système
 
-想要使用 Canyon 的所有功能，您必须配置以下数据表：
+Pour utiliser toutes les fonctionnalités de Canyon, vous devez configurer les tables de données suivantes :
 
-1. `CANYON_SERVER`: Canyon 服务器地址
-2. `GITLAB_SERVER`: GitLab 服务器地址
-3. `GITLAB_CLIENT_ID`: GitLab 客户端 ID
-4. `GITLAB_CLIENT_SECRET`: GitLab 客户端密钥
+1. `CANYON_SERVER` : Adresse du serveur Canyon
+2. `GITLAB_SERVER` : Adresse du serveur GitLab
+3. `GITLAB_CLIENT_ID` : ID client GitLab
+4. `GITLAB_CLIENT_SECRET` : Secret client GitLab
 
-NOTE: 回调地址为 `<CANYON_SERVER>/oauth`，请确保在 GitLab 中配置正确。
+NOTE : L'URL de redirection est `<CANYON_SERVER>/oauth`, assurez-vous de la configurer correctement dans GitLab.
 
 import { Callout } from 'nextra/components';
 
@@ -24,10 +24,10 @@ values  ('1', 'CANYON_SERVER', 'https://canyonjs.org'),
 ```
 
 <Callout type="info" emoji="ℹ️">
-  [将 GitLab 配置为 OAuth 2.0 身份验证身份提供者](https://docs.gitlab.com/ee/integration/oauth_provider.html)
+  [Configurer GitLab en tant que fournisseur d'authentification OAuth 2.0](https://docs.gitlab.com/ee/integration/oauth_provider.html)
 </Callout>
 
-目前只支持 GitLab，后续会支持更多的 Git 服务商。
+Actuellement, seul GitLab est pris en charge. D'autres fournisseurs Git seront pris en charge ultérieurement.
 
 ```sql copy
 insert into public.git_provider (id, url, type, name, disabled, private_token)
@@ -35,18 +35,18 @@ values  ('gitlab', 'https://gitlab.com', 'gitlab', 'GitLab', false, 'xxx');
 ```
 
 <Callout type="info" emoji="ℹ️">
-  [生成 GitLab Private Token](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token)
+  [Générer un GitLab Private Token](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token)
 </Callout>
 
-## 管理员登录
+## Connexion Administrateur
 
-创建以下用户。您可以使用以下凭据登录： email: canyon，password: 123456
+Créez l'utilisateur suivant. Vous pouvez vous connecter avec les identifiants : email: canyon, password: 123456
 
 ```sql copy
 INSERT INTO "user" (id, email, password, nickname, avatar, favor)
 VALUES ('canyon', 'canyon@canyon.com', '123456', 'Canyon', '/avatar.jpg', '');
 ```
 
-## gitlab oauth2 登陆
+## Connexion via GitLab OAuth2
 
 ![](https://cdn.jsdelivr.net/gh/canyon-project/assets/docs/static/docs/self-host/community-edition/login.png)

@@ -1,103 +1,103 @@
-# istanbuljs 覆盖率数据字典
+# Dictionnaire de Structure de Données de Couverture Istanbul.js
 
-## 概述
-istanbuljs 是一个JavaScript代码覆盖率的黄金标准，本数据字典描述了覆盖率数据的主要结构和字段。
+## Aperçu
+Istanbul.js est la référence en matière de couverture de code JavaScript. Ce dictionnaire décrit les structures de données et les champs principaux de la couverture de code.
 
-## 主要数据结构
+## Principales Structures de Données
 
-### 1. Coverage Object (覆盖率对象)
-顶级覆盖率数据结构，包含所有文件的覆盖率信息。
+### 1. Objet de Couverture
+Structure de données de couverture de niveau supérieur, contenant les informations de couverture pour tous les fichiers.
 
 ```json
 {
   "path/to/file.js": {
-    // FileCoverage 对象
+    // Objet FileCoverage
   }
 }
 ```
 
-### 2. FileCoverage (文件覆盖率)
-单个文件的完整覆盖率数据。
+### 2. FileCoverage (Couverture de Fichier)
+Données de couverture complètes pour un seul fichier.
 
-| 字段 | 类型 | 描述 |
+| Champ | Type | Description |
 |------|------|------|
-| `path` | string | 文件的绝对路径 |
-| `statementMap` | Object | 语句映射表 |
-| `fnMap` | Object | 函数映射表 |
-| `branchMap` | Object | 分支映射表 |
-| `s` | Object | 语句执行计数 |
-| `f` | Object | 函数执行计数 |
-| `b` | Object | 分支执行计数 |
+| `path` | string | Chemin absolu du fichier |
+| `statementMap` | Object | Carte des instructions |
+| `fnMap` | Object | Carte des fonctions |
+| `branchMap` | Object | Carte des branches |
+| `s` | Object | Comptage d'exécution des instructions |
+| `f` | Object | Comptage d'appel des fonctions |
+| `b` | Object | Comptage d'exécution des branches |
 
-### 3. StatementMap (语句映射)
-描述代码中每个语句的位置信息。
+### 3. StatementMap (Carte des Instructions)
+Décrit l'emplacement de chaque instruction dans le code.
 
-| 字段 | 类型 | 描述 |
+| Champ | Type | Description |
 |------|------|------|
-| `start` | Location | 语句开始位置 |
-| `end` | Location | 语句结束位置 |
+| `start` | Location | Position de début de l'instruction |
+| `end` | Location | Position de fin de l'instruction |
 
-### 4. FunctionMap (函数映射)
-描述代码中每个函数的信息。
+### 4. FunctionMap (Carte des Fonctions)
+Décrit chaque fonction dans le code.
 
-| 字段 | 类型 | 描述 |
+| Champ | Type | Description |
 |------|------|------|
-| `name` | string | 函数名称（匿名函数为"(anonymous_N)"） |
-| `decl` | Location | 函数声明位置 |
-| `loc` | Location | 函数体位置 |
-| `line` | number | 函数声明行号 |
+| `name` | string | Nom de la fonction ("(anonymous_N)" pour les fonctions anonymes) |
+| `decl` | Location | Position de déclaration de la fonction |
+| `loc` | Location | Position du corps de la fonction |
+| `line` | number | Numéro de ligne de déclaration de la fonction |
 
-### 5. BranchMap (分支映射)
-描述代码中每个分支的信息。
+### 5. BranchMap (Carte des Branches)
+Décrit chaque branche dans le code.
 
-| 字段 | 类型 | 描述 |
+| Champ | Type | Description |
 |------|------|------|
-| `loc` | Location | 分支位置 |
-| `type` | string | 分支类型（if, switch, cond-expr, binary-expr） |
-| `locations` | Array&lt;Location&gt; | 分支条件的所有可能位置 |
+| `loc` | Location | Position de la branche |
+| `type` | string | Type de branche (if, switch, cond-expr, binary-expr) |
+| `locations` | Array&lt;Location&gt; | Toutes les positions possibles de la condition de la branche |
 
-### 6. Location (位置信息)
-描述源代码中的位置。
+### 6. Location (Informations d'Emplacement)
+Décrit une position dans le code source.
 
-| 字段 | 类型 | 描述 |
+| Champ | Type | Description |
 |------|------|------|
-| `start` | Position | 开始位置 |
-| `end` | Position | 结束位置 |
+| `start` | Position | Position de départ |
+| `end` | Position | Position de fin |
 
-### 7. Position (坐标位置)
-源代码中的具体坐标。
+### 7. Position (Position de Coordonnées)
+Coordonnées spécifiques dans le code source.
 
-| 字段 | 类型 | 描述 |
+| Champ | Type | Description |
 |------|------|------|
-| `line` | number | 行号（从1开始） |
-| `column` | number | 列号（从0开始） |
+| `line` | number | Numéro de ligne (commence à 1) |
+| `column` | number | Numéro de colonne (commence à 0) |
 
-## 计数器对象
+## Objets Compteurs
 
-### 8. Statement Counters (语句计数器)
-记录每个语句的执行次数。
+### 8. Comptage d'Instructions
+Enregistre le nombre d'exécutions de chaque instruction.
 
 ```json
 {
-  "0": 5,    // 语句ID 0 执行了5次
-  "1": 0,    // 语句ID 1 未执行
-  "2": 3     // 语句ID 2 执行了3次
+  "0": 5,    // L'instruction ID 0 a été exécutée 5 fois
+  "1": 0,    // L'instruction ID 1 n'a pas été exécutée
+  "2": 3     // L'instruction ID 2 a été exécutée 3 fois
 }
 ```
 
-### 9. Function Counters (函数计数器)
-记录每个函数的调用次数。
+### 9. Comptage de Fonctions
+Enregistre le nombre d'appels de chaque fonction.
 
 ```json
 {
-  "0": 2,    // 函数ID 0 被调用了2次
-  "1": 0,    // 函数ID 1 未被调用
-  "2": 1     // 函数ID 2 被调用了1次
+  "0": 2,    // La fonction ID 0 a été appelée 2 fois
+  "1": 0,    // La fonction ID 1 n'a pas été appelée
+  "2": 1     // La fonction ID 2 a été appelée 1 fois
 }
 ```
 
-### 10. Branch Counters (分支计数器)
-记录每个分支条件的执行次数。
+### 10. Comptage de Branches
+Enregistre le nombre d'exécutions de chaque condition de branche.
 
 ```json
 {

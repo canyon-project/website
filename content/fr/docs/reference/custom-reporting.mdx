@@ -1,17 +1,17 @@
-# 自定义数据上报
+# Rapport de Données Personnalisé
 
-在某些场景下，特别是APP内嵌的H5页面需要上报覆盖率数据时，由于没有类似PC端的Canyon Chrome插件，需要自定义实现覆盖率数据的上报功能。
+Dans certains scénarios, en particulier lorsque des pages H5 intégrées dans des applications mobiles doivent rapporter des données de couverture, il est nécessaire de mettre en œuvre une fonctionnalité de rapport de données de couverture personnalisée car il n'existe pas de plugin Chrome Canyon similaire à celui disponible sur les ordinateurs de bureau.
 
-## 适用场景
+## Scénarios d'utilisation
 
-- APP内嵌的H5页面
-- 无法使用Canyon Chrome插件的环境
-- 需要自定义上报逻辑的场景
-- 移动端Web应用
+- Pages H5 intégrées dans des applications mobiles
+- Environnements où le plugin Chrome Canyon ne peut pas être utilisé
+- Scénarios nécessitant une logique de rapport personnalisée
+- Applications Web mobiles
 
-## 实现方案
+## Solution de mise en œuvre
 
-以下是一个基本的自定义上报实现方案：
+Voici une solution de base pour la mise en œuvre d'un rapport personnalisé :
 
 ```javascript copy
 const coverageFirstValue = Object.values(window.__coverage__||{})[0];
