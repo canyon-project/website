@@ -1,43 +1,43 @@
-# 先决条件
+# 先決條件
 
-在您自己的基础架构上安装 Canyon 的先决条件。
+在您自己的基礎架構上安裝 Canyon 的先決條件。
 
-Canyon 是一个自托管 API 开发平台，打包为一组 Docker 容器。您可以在任何可以运行[Docker Engine](https://docs.docker.com/engine) 的操作系统上安装和运行 Canyon 。您可以在本地计算机或您选择的云提供商上使用 Canyon。
+Canyon 是一個自託管 API 開發平台，打包為一組 Docker 容器。您可以在任何可以運行[Docker Engine](https://docs.docker.com/engine) 的操作系統上安裝和運行 Canyon 。您可以在本地計算機或您選擇的雲提供商上使用 Canyon。
 
-## 系统要求
+## 系統要求
 
-Canyon 的设计使其在小型和大型部署中都能良好运行。运行 Canyon 的最低要求是支持 Docker 的操作系统和 4 个 CPU 核心 + 4GB RAM 来生成构建映像，以及至少 1 个 CPU 核心 + 2GB RAM 来托管生成的输出文件。
+Canyon 的設計使其在小型和大型部署中都能良好運行。運行 Canyon 的最低要求是支持 Docker 的操作系統和 4 個 CPU 核心 + 4GB RAM 來生成構建映像，以及至少 1 個 CPU 核心 + 2GB RAM 來託管生成的輸出文件。
 
-### 安装 Node.js、npm、pnpm
+### 安裝 Node.js、npm、pnpm
 
 #### Node.js + npm
 
-安装 [`Node.js`](https://nodejs.org/en) (v18+) 和 [`npm`](https://www.npmjs.com) (v9+).
+安裝 [`Node.js`](https://nodejs.org/en) (v18+) 和 [`npm`](https://www.npmjs.com) (v9+).
 
-- [Node.js + npm 安装手册](https://nodejs.org/en/download)
+- [Node.js + npm 安裝手冊](https://nodejs.org/en/download)
 
 
 ### pnpm
 
-安装 [`pnpm`](https://pnpm.io) (建议使用v9).
+安裝 [`pnpm`](https://pnpm.io) (建議使用v9).
 
-- [pnpm 安装手册](https://pnpm.io/installation)
+- [pnpm 安裝手冊](https://pnpm.io/installation)
 
 ### Docker
 
-安装 [`Docker`](https://www.docker.com) (v20+).
+安裝 [`Docker`](https://www.docker.com) (v20+).
 
-- [Docker 安装手册](https://docs.docker.com/engine/install)
+- [Docker 安裝手冊](https://docs.docker.com/engine/install)
 
-### Postgres数据库
+### Postgres數據庫
 
-Canyon 使用 Postgres 数据库来存储基础数据（需要14.x以上）。您可以使用您选择的任何 Postgres 数据库提供商 - 托管在本地或云提供商上。确保您拥有以下格式的有效 Postgres 数据库 URL：
+Canyon 使用 Postgres 數據庫來存儲基礎數據（需要14.x以上）。您可以使用您選擇的任何 Postgres 數據庫提供商 - 託管在本地或雲提供商上。確保您擁有以下格式的有效 Postgres 數據庫 URL：
 
 ```
 postgres://username:password@localhost:5432/dbname
 ```
 
-#### 创建表
+#### 創建表
 
 ```shell
 pnpm run migrate

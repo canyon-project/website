@@ -1,17 +1,17 @@
-# 还原源码覆盖率
+# 還原源碼覆蓋率
 
-前端应用编译形态各异，很多情况下是经过预编译后的 AST 交由 babel 进行转换，这样导致覆盖率无法直接映射到源码上，因此我们需要还原源码覆盖率。
+前端應用編譯形態各異，很多情況下是經過預編譯後的 AST 交由 babel 進行轉換，這樣導致覆蓋率無法直接映射到源碼上，因此我們需要還原源碼覆蓋率。
 
 ## Source Map
 
 >
-> 在前端开发中，通常会对 JavaScript 代码进行压缩、混淆或使用预处理器（如 TypeScript、Babel）进行转换，以提高性能和兼容性。这些处理会使得最终部署到生产环境的代码与原始源代码差异很大，导致调试变得困难。Source Map 解决了这个问题，它记录了编译后代码与原始代码之间的映射关系，使得开发者能够在浏览器的开发者工具中查看和调试原始代码。 -- [web.dev](https://web.dev/articles/source-maps)
+> 在前端開發中，通常會對 JavaScript 代碼進行壓縮、混淆或使用預處理器（如 TypeScript、Babel）進行轉換，以提高性能和兼容性。這些處理會使得最終部署到生產環境的代碼與原始源代碼差異很大，導致調試變得困難。Source Map 解決了這個問題，它記錄了編譯後代碼與原始代碼之間的映射關係，使得開發者能夠在瀏覽器的開發者工具中查看和調試原始代碼。 -- [web.dev](https://web.dev/articles/source-maps)
 
-大多数情况下，您不需要手动获取 sourceMap 文件，因为大多数构建工具都会 `预编译后的 AST 交由 babel 进行转换` 的这个过程中传递了 sourceMap 文件。
+大多數情況下，您不需要手動獲取 sourceMap 文件，因為大多數構建工具都會在 `預編譯後的 AST 交由 babel 進行轉換` 的這個過程中傳遞了 sourceMap 文件。
 
-但是在某些情况下，您可能需要配置 sourceMap 文件。
+但是在某些情況下，您可能需要配置 sourceMap 文件。
 
-## 开启 sourceMap 选项的情况
+## 開啟 sourceMap 選項的情況
 
 ```js filename="webpack.config.js" {4}
 const path = require('path');
@@ -34,7 +34,7 @@ module.exports = {
 };
 ```
 
-在这个例子中，webpack的入口文件是 `./build/main.js`，这是tsc编译ts文件的产物。我们需要将 tsconfig.json 中的 `sourceMap` 设置为 `true`，__才能保证sourceMap数据的传递。__
+在這個例子中，webpack 的入口文件是 `./build/main.js`，這是 tsc 編譯 ts 文件的產物。我們需要將 tsconfig.json 中的 `sourceMap` 設置為 `true`，__才能保證 sourceMap 數據的傳遞。__
 
 ```json filename="tsconfig.json" {3}
 {
@@ -44,19 +44,19 @@ module.exports = {
 }
 ```
 
-## 手动设置 sourceMap 的情况
+## 手動設置 sourceMap 的情況
 
-当您的sourceMap生成的方式为以下情况时，您需要手动设置sourceMap。
+當您的 sourceMap 生成的方式為以下情況時，您需要手動設置 sourceMap。
 
-| 分类              | devtool                       |  描述                                    |
+| 分類              | devtool                       |  描述                                    |
 |-------------------|-------------------------------|-----------------------------------------|
-| 生成source map文件，不显示源码   | hidden-source-map             |  文件未尾不引用map文件                 |
-| 生成source map文件，不显示源码   | nosources-source-map           | 文件未尾不引用map文件                 |
+| 生成 source map 文件，不顯示源碼   | hidden-source-map             |  文件未尾不引用 map 文件                 |
+| 生成 source map 文件，不顯示源碼   | nosources-source-map           | 文件未尾不引用 map 文件                 |
 
-### 如何手动设置 sourceMap
+### 如何手動設置 sourceMap
 
-此时您需要使用到[分离hit和map](/docs/core-concepts/separate-hit-and-map)，通过`canyon-uploader`在构建阶段侦测本地的sourceMap文件，Canyon会将他们与覆盖率初始数据匹配上传。
+此時您需要使用到[分離 hit 和 map](/docs/core-concepts/separate-hit-and-map)，通過 `canyon-uploader` 在構建階段偵測本地的 sourceMap 文件，Canyon 會將它們與覆蓋率初始數據匹配上傳。
 
 > [!NOTE]
 >
-> 这也需就是javascript过于灵活的一个缺点，想要收集到准确的源码覆盖率数据，我们需要串联起这些sourceMap文件，让代码插桩能够正确的映射到源码上。
+> 這也是 javascript 過於靈活的一個缺點，想要收集到準確的源碼覆蓋率數據，我們需要串聯起這些 sourceMap 文件，讓代碼插樁能夠正確地映射到源碼上。
