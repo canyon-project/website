@@ -54,13 +54,13 @@ If you want complete control over your coverage data and test data, you can [sel
 [canyon-uploader-package]: https://npmjs.com/package/canyon-uploader
 [canyon-extension-package]: https://chrome.google.com/webstore/detail/canyon/omnpafdjidgpdmlimbangcjjaaodbeof
 
-## 架构
+## Architecture
 
-以下图示展示了 Canyon 及其生态系统的一些组件架构：
+The following diagram shows the architecture of Canyon and some of its ecosystem components:
 
-1. Babel 插件在 CI/CD 流水线中完成代码插桩。
-2. 项目发布到测试环境，用户可以选择 UI 自动化或手动测试来触发插桩代码探针。
-3. 生成的覆盖率数据上报至 Canyon 服务器。
-4. Canyon 服务器消费数据，并结合 GitLab 提供的源代码信息生成覆盖率报告。
+1. The Babel plugin completes code instrumentation in the CI/CD pipeline.
+2. The project is deployed to the test environment, and users can choose UI automation or manual testing to trigger the instrumented code probes.
+3. The generated coverage data is reported to the Canyon server.
+4. The Canyon server consumes the data and generates coverage reports in combination with source code information provided by GitLab.
 
 ![](https://cdn.jsdelivr.net/gh/canyon-project/assets/docs/static/docs/getting-started/introduction/architecture.png)
